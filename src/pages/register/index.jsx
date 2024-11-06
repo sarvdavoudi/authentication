@@ -1,11 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
   FormLabel,
   Radio,
   RadioGroup,
+  Switch,
   TextField,
   Typography,
   useTheme,
@@ -46,7 +48,7 @@ const index = () => {
 
   const theme = useTheme();
   const [selectedDate, setSelectedDate] = useState(null);
-
+  const [checkExtraInfo, setCheckExtraInfo] = useState(null);
   return (
     <>
       <Box
@@ -59,7 +61,6 @@ const index = () => {
         }}
       >
         <Typography>Register</Typography>
-
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
@@ -93,27 +94,42 @@ const index = () => {
             {...register("confirmPassword")}
             helperText={errors.confirmPassword?.message}
           />
-          {/* gender */}
-          <FormControl>
-            <FormLabel>Gender</FormLabel>
-            <RadioGroup row>
-              <FormControlLabel
-                value="female"
-                label="Female"
-                control={<Radio />}
-              />
-              <FormControlLabel value="male" label="Male" control={<Radio />} />
-            </RadioGroup>
-          </FormControl>
-          {/* data picker */}
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="select date"
-              value={selectedDate}
-              onChange={(newDate) => setSelectedDate(newDate)}
-            />
-          </LocalizationProvider>
-
+          {/* show more info */}
+          <FormControlLabel
+            label="extra info"
+            control={<Switch />}
+            onChange={() => setCheckExtraInfo(!checkExtraInfo)}
+          />
+          {checkExtraInfo && (
+            <>
+              {/* gender */}
+              <FormControl>
+                <FormLabel>Gender</FormLabel>
+                <RadioGroup row>
+                  <FormControlLabel
+                    value="female"
+                    label="Female"
+                    control={<Radio />}
+                  />
+                  <FormControlLabel
+                    value="male"
+                    label="Male"
+                    control={<Radio />}
+                  />
+                </RadioGroup>
+              </FormControl>
+              {/* data picker */}
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="select date"
+                  value={selectedDate}
+                  onChange={(newDate) => setSelectedDate(newDate)}
+                />
+              </LocalizationProvider>
+            </>
+          )}
+          {/* checkbox */}
+          <FormControlLabel label="Remember me" control={<Checkbox />} />
           <Button type="submit" variant="contained" color="primary">
             Register
           </Button>
