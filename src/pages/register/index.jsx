@@ -12,11 +12,10 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import React, { useState } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
 const registerSchema = yup.object({
   username: yup.string().required("user name is required"),
   email: yup
@@ -44,8 +43,10 @@ const index = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
   const theme = useTheme();
   const [selectedDate, setSelectedDate] = useState(null);
+
   return (
     <>
       <Box
@@ -112,11 +113,7 @@ const index = () => {
               onChange={(newDate) => setSelectedDate(newDate)}
             />
           </LocalizationProvider>
-          {/* country selection */}
-          <FormControl error={!!errors.country}>
-            <FormLabel>country</FormLabel>
-             
-          </FormControl>
+
           <Button type="submit" variant="contained" color="primary">
             Register
           </Button>
