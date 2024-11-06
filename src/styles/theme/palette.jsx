@@ -49,13 +49,13 @@ const lightModePalette = {
 const darkModePalette = {
   mode: "dark",
   primary: {
-    light: "hsl(14, 86%, 42%)",
-    main: "hsl(14, 80%, 38%)",
-    dark: "hsl(14, 70%, 30%)",
+    main: "#2e7d32",
+    light: "#4caf50",
+    dark: "#1b5e20",
   },
   secondary: {
     light: "#FFFFFF",
-    main: "#FFFFFF",
+    main: "#313A43",
     dark: "#FFFFFF",
   },
   info: {

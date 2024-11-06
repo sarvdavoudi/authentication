@@ -5,9 +5,9 @@
 }
 @font-face {
   font-family: vazirmatn;
-  src: url(/public/fonts/Vazir-Regular.ttf),
-    url(/public/fonts/Vazir-Regular.eot),
-    url(/public/fonts/Vazir-Regular-FD.woff2);
+  src: url(../../public/fonts/Vazir-Regular-FD.woff2),
+    url(../../public/fonts/Vazir-Regular.eot),
+    url(../../public/fonts/Vazir-Regular.ttf);
 }
 
 body {
