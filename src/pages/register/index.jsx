@@ -1,3 +1,4 @@
+import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
@@ -15,9 +16,11 @@ import {
 import { Box } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+// yup schema
 const registerSchema = yup.object({
   username: yup.string().required("user name is required"),
   email: yup
@@ -42,8 +45,15 @@ const index = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await customizedAxios.post("/users",data);
+      console.log(response.data);
+      
+    } catch (error) {
+      console.error("submit error ", error);
+    }
   };
 
   const theme = useTheme();
@@ -61,6 +71,8 @@ const index = () => {
         }}
       >
         <Typography>Register</Typography>
+        {/* handleSubmit is a buit-in func in react-hook-form and if validations of fields was successfull then
+        send data to 'onSubmit' func. we can just write our custom code in 'onSubmit' function*/}
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{

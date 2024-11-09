@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db/db.json --port 5000"
   },
   "dependencies": {
     "@date-io/dayjs": "^3.0.0",
@@ -16,7 +17,9 @@
     "@mui/material": "^6.1.6",
     "@mui/x-date-pickers": "^7.22.1",
     "@reduxjs/toolkit": "^2.3.0",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
+    "json-server": "^1.0.0-beta.3",
     "next": "15.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -24,6 +27,7 @@
     "react-redux": "^9.1.2",
     "react-select": "^5.8.2",
     "react-select-country-list": "^2.2.3",
+    "redux-persist": "^6.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
