@@ -48,11 +48,19 @@ const index = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await customizedAxios.post("/users",data);
-      console.log(response.data);
-      
+      // Check if the user already exists by email  Stop execution . this function handle by back-end in real projects
+      const getResponse = await customizedAxios.get(
+        `/users?email=${data.email}`
+      );
+      if (getResponse.data.length > 0) {
+        alert("User already exists with this email");
+        return;
+      }
+      // If user doesn't exist, send the POST request to create a new user
+      const postResponse = await customizedAxios.post("/users", data);
+      console.log(postResponse.data);
     } catch (error) {
-      console.error("submit error ", error);
+      console.error("Submit error ", error);
     }
   };
 
