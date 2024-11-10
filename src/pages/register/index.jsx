@@ -35,9 +35,8 @@ const registerSchema = yup.object({
     .string()
     .oneOf([yup.ref("password"), null], "password must match")
     .required("confirm password is required"),
-  birthdate: yup.date(),
-  gender: yup.string(),
-  country: yup.string(),
+    birthdate: yup.date().nullable(), 
+    gender: yup.string().nullable(),
 });
 const index = () => {
   const {
@@ -45,28 +44,21 @@ const index = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
-
+  
   const onSubmit = async (data) => {
     try {
-      // Check if the user already exists by email  Stop execution . this function handle by back-end in real projects
-      const getResponse = await customizedAxios.get(
-        `/users?email=${data.email}`
-      );
-      if (getResponse.data.length > 0) {
-        alert("User already exists with this email");
-        return;
-      }
-      // If user doesn't exist, send the POST request to create a new user
-      const postResponse = await customizedAxios.post("/users", data);
+      data.birthdate = selectedDate ? selectedDate.format("YYYY-MM-DD") : null;
+      const postResponse = await customizedAxios.post("/register", data);
       console.log(postResponse.data);
     } catch (error) {
       console.error("Submit error ", error);
     }
   };
-
-  const theme = useTheme();
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [checkExtraInfo, setCheckExtraInfo] = useState(null);
+  
+    const theme = useTheme();
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [checkExtraInfo, setCheckExtraInfo] = useState(null);
+  
   return (
     <>
       <Box
@@ -123,19 +115,11 @@ const index = () => {
           {checkExtraInfo && (
             <>
               {/* gender */}
-              <FormControl>
+              <FormControl error={!!errors.gender}>
                 <FormLabel>Gender</FormLabel>
-                <RadioGroup row>
-                  <FormControlLabel
-                    value="female"
-                    label="Female"
-                    control={<Radio />}
-                  />
-                  <FormControlLabel
-                    value="male"
-                    label="Male"
-                    control={<Radio />}
-                  />
+                <RadioGroup row {...register("gender")}>
+                  <FormControlLabel value="female" label="Female" control={<Radio />} />
+                  <FormControlLabel value="male" label="Male" control={<Radio />} />
                 </RadioGroup>
               </FormControl>
               {/* data picker */}

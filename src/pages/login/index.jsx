@@ -7,10 +7,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { customizedAxios } from "@/services/axios";
 const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("invalid email format")
-    .required("Email is required"),
+  username: yup.string().required("user name is required"),
   password: yup
     .string()
     .min(6, "pass must be at least 6 charachter")
@@ -24,33 +21,42 @@ const index = () => {
   } = useForm({ resolver: yupResolver(loginSchema) });
   const onSubmit = async (data) => {
     try {
-      // Check if the user exists by email
-      const response = await customizedAxios.get(`/users?email=${data.email}`);
+      // Send login data (username & password) to the backend for verification
+      const response = await customizedAxios.post('/auth', {
+        user: data.username,  // Pass 'username' as 'user'
+        pwd: data.password,   // Pass 'password' as 'pwd'
+      });
   
-      // If no user is found, show an error message
-      if (response.data.length === 0) {
-        console.error("User not found");
-        alert("User not found"); // Show error message to the user
-        return;
-      }
-  
-      // Get the user from the response
-      const user = response.data[0];
-  
-      // Check if the password matches
-      if (user.password === data.password) {
+      // // If login is successful, the backend will send an access token
+      if (response.data.accessToken) {
+        console.log(response.data.accessToken);
         console.log('Login successful!');
-        // Here, handle successful login
-        // E.g., Store JWT token in localStorage or redirect to dashboard
+  
+        // Store the access token in localStorage
+        localStorage.setItem('accessToken', response.data.accessToken);
+  
+        // Optionally, store the refresh token from cookies (for token refreshing)
+        const refreshToken = document.cookie
+          .split('; ')
+          .find(row => row.startsWith('jwt='))
+          ?.split('=')[1];
+  
+        if (refreshToken) {
+          localStorage.setItem('refreshToken', refreshToken);
+        }
+  
+        
       } else {
-        console.error("Incorrect password");
-        alert("Incorrect password"); // Show error message to the user
+        console.error('Login failed');
+        alert('Login failed, please check your credentials');
       }
     } catch (error) {
       console.error('Login error', error);
-      alert("An error occurred during login. Please try again."); // Show generic error message to user
+      alert("An error occurred during login. Please try again.");
     }
   };
+  
+  
   
   const theme = useTheme();
   return (
@@ -75,11 +81,11 @@ const index = () => {
           }}
         >
           <TextField
-            label="Email"
+            label="username"
             variant="outlined"
-            {...register("email")}
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            {...register("username")}
+            error={!!errors.username}
+            helperText={errors.username?.message}
           />
           <TextField
             label="password"
