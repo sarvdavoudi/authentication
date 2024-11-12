@@ -3,16 +3,20 @@ import { alpha } from "@mui/material";
 // theme/palette.js
 const lightModePalette = {
   mode: "light",
+  background: {
+    default: "#FFFFFF",
+    paper: "#313A43",
+  },
   primary: {
-    light: " hsl(14, 94%, 54%)",
-    main: "hsl(14, 86%, 42%)",
-    dark: "hsl(14, 88%, 30%)",
+    main: "#2e7d32",
+    light: "#4caf50",
+    dark: "#1b5e20",
     contrastText: "#fff",
   },
   secondary: {
-    light: " hsl(14, 25%, 72%)",
-    main: "hsl(7, 20%, 60%)",
-    dark: " hsl(12, 20%, 44%)",
+    light: "#FFFFFF",
+    main: "#313A43",
+    dark: "#FFFFFF",
   },
   info: {
     main: "hsl(20, 50%, 98%)",
@@ -62,6 +66,10 @@ const darkModePalette = {
     main: "hsl(220, 15%, 20%)",
     dark: "hsl(220, 20%, 15%)",
     text: "#FFFFFF",
+  },
+  background: {
+    default: "#1a242e", // A lighter black (adjust this shade as desired)
+    paper: "#313A43", // A lighter background for paper elements
   },
   gray: {
     1000: "#313A43",

@@ -1,7 +1,15 @@
 "use client";
 import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -16,7 +24,7 @@ const loginSchema = yup.object().shape({
     .required("Password is required"),
 });
 
-const index = () => {
+const Login = () => {
   const theme = useTheme();
   // react hook form properties
   const {
@@ -62,15 +70,11 @@ const index = () => {
     <Box
       sx={{
         width: "400px",
-        m: "auto",
-        mt: 20,
-        backgroundColor: theme.palette.secondary.main,
         padding: "20px",
       }}
     >
       <Typography
         sx={{
-          color: theme.palette.primary.main,
           fontWeight: 900,
         }}
       >
@@ -102,7 +106,6 @@ const index = () => {
           variant="outlined"
           type="password"
           {...register("password")}
-          // error={!!errors.password}
           helperText={errors.password?.message}
           sx={{
             "& .MuiFormHelperText-root": {
@@ -113,9 +116,13 @@ const index = () => {
         <Button type="submit" variant="contained" color="primary">
           Login
         </Button>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Link href="/register">sign up</Link>
+          <Link href="#">forget password</Link>
+        </Box>
       </form>
     </Box>
   );
 };
 
-export default index;
+export default Login;

@@ -6,6 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  Paper,
   Radio,
   RadioGroup,
   Switch,
@@ -13,16 +14,14 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-// yup schema
+//define yup schema
 const registerSchema = yup.object({
-  username: yup.string().required("user name is required"),
+  username: yup.string().required("userName is required"),
   email: yup
     .string()
     .email("invalid email format")
@@ -35,16 +34,20 @@ const registerSchema = yup.object({
     .string()
     .oneOf([yup.ref("password"), null], "password must match")
     .required("confirm password is required"),
-    birthdate: yup.date().nullable(), 
-    gender: yup.string().nullable(),
+  birthdate: yup.date().nullable(),
+  gender: yup.string().nullable(),
 });
 const index = () => {
+  const theme = useTheme();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [checkExtraInfo, setCheckExtraInfo] = useState(null);
+  // react hook form properties
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registerSchema) });
-  
+
   const onSubmit = async (data) => {
     try {
       data.birthdate = selectedDate ? selectedDate.format("YYYY-MM-DD") : null;
@@ -54,23 +57,24 @@ const index = () => {
       console.error("Submit error ", error);
     }
   };
-  
-    const theme = useTheme();
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [checkExtraInfo, setCheckExtraInfo] = useState(null);
-  
+
   return (
     <>
-      <Box
+      <Paper
         sx={{
           width: "400px",
           m: "auto",
-          mt: 20,
-          backgroundColor: theme.palette.secondary.main,
+          my: 20,
           p: 3,
         }}
       >
-        <Typography>Register</Typography>
+        <Typography
+          sx={{
+            fontWeight: 900,
+          }}
+        >
+          Register Form
+        </Typography>
         {/* handleSubmit is a buit-in func in react-hook-form and if validations of fields was successfull then
         send data to 'onSubmit' func. we can just write our custom code in 'onSubmit' function*/}
         <form
@@ -87,24 +91,46 @@ const index = () => {
             variant="outlined"
             {...register("username")}
             helperText={errors.username?.message}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                color: errors.username ? theme.palette.primary.main : "inherit",
+              },
+            }}
           />
           <TextField
             label="email"
             variant="outlined"
             {...register("email")}
             helperText={errors.email?.message}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                color: errors.email ? theme.palette.primary.main : "inherit",
+              },
+            }}
           />
           <TextField
             label="password"
             variant="outlined"
             {...register("password")}
             helperText={errors.password?.message}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                color: errors.password ? theme.palette.primary.main : "inherit",
+              },
+            }}
           />
           <TextField
             label="confirmPassword"
             variant="outlined"
             {...register("confirmPassword")}
             helperText={errors.confirmPassword?.message}
+            sx={{
+              "& .MuiFormHelperText-root": {
+                color: errors.confirmPassword
+                  ? theme.palette.primary.main
+                  : "inherit",
+              },
+            }}
           />
           {/* show more info */}
           <FormControlLabel
@@ -118,8 +144,16 @@ const index = () => {
               <FormControl error={!!errors.gender}>
                 <FormLabel>Gender</FormLabel>
                 <RadioGroup row {...register("gender")}>
-                  <FormControlLabel value="female" label="Female" control={<Radio />} />
-                  <FormControlLabel value="male" label="Male" control={<Radio />} />
+                  <FormControlLabel
+                    value="female"
+                    label="Female"
+                    control={<Radio />}
+                  />
+                  <FormControlLabel
+                    value="male"
+                    label="Male"
+                    control={<Radio />}
+                  />
                 </RadioGroup>
               </FormControl>
               {/* data picker */}
@@ -138,7 +172,7 @@ const index = () => {
             Register
           </Button>
         </form>
-      </Box>
+      </Paper>
     </>
   );
 };
