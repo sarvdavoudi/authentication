@@ -1,14 +1,7 @@
 "use client";
 import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Box,
-  Button,
-  Paper,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -17,7 +10,7 @@ const loginSchema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid email format")
-    .required("Email is required"), // Added required email validation
+    .required("Email is required"),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters")

@@ -1,6 +1,6 @@
+import Layout from "@/components/Layout/Layout";
 import Login from "@/components/Login/Login";
-import SwitchThemeBtn from "@/components/SwitchThemeBtn/SwitchThemeBtn";
-import { Box, Paper, Typography, useTheme } from "@mui/material";
+import { Box, Paper, useTheme } from "@mui/material";
 import Head from "next/head";
 import { RiLoginBoxLine } from "react-icons/ri";
 export default function Home() {
@@ -8,8 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>authentication</Head>
-      <main className="main-wrapper" style={{}}>
-        <SwitchThemeBtn />
+      <Layout>
         <Box
           className="container"
           sx={{
@@ -49,7 +48,7 @@ export default function Home() {
             </Box>
           </Paper>
         </Box>
-      </main>
+      </Layout>
     </>
   );
 }
