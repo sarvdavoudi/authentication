@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -40,6 +41,7 @@ const registerSchema = yup.object({
 });
 const index = () => {
   const theme = useTheme();
+  const router = useRouter();
   const [selectedDate, setSelectedDate] = useState(null);
   const [checkExtraInfo, setCheckExtraInfo] = useState(null);
   // react hook form properties
@@ -54,6 +56,7 @@ const index = () => {
       data.birthdate = selectedDate ? selectedDate.format("YYYY-MM-DD") : null;
       const postResponse = await customizedAxios.post("/register", data);
       console.log(postResponse.data);
+      router.push("/SuccessRegister")
     } catch (error) {
       console.error("Submit error ", error);
     }

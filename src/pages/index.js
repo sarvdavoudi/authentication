@@ -10,10 +10,10 @@ export default function Home() {
       <Head>authentication</Head>
       <Layout>
         <Box
-          className="container"
           sx={{
-            minHeight: "100vh",
+            height: "100vh",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -21,8 +21,6 @@ export default function Home() {
           <Paper
             className="card-container"
             sx={{
-              margin: "0 auto",
-              maxWidth: "900px",
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               justifyContent: "space-between",
