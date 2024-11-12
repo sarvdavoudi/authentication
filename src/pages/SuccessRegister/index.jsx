@@ -21,7 +21,7 @@ const SuccessRegister = () => {
         <Typography variant="body1">
           your authentication was successful{" "}
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" href="/">
           go to login page
         </Button>
       </Box>
