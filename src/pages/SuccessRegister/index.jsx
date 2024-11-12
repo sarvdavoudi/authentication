@@ -8,8 +8,7 @@ const SuccessRegister = () => {
     <Layout>
       <Box
         sx={{
-          // border: "4px solid green",
-          height: "100vh",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

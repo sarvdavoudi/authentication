@@ -1,11 +1,12 @@
-import SwitchThemeBtn from '../SwitchThemeBtn/SwitchThemeBtn'
+import React from "react";
+import SwitchThemeBtn from "../SwitchThemeBtn/SwitchThemeBtn";
 
 const Header = () => {
   return (
-  <>
-  <SwitchThemeBtn/>
-  </>
-  )
-}
+    <>
+      <SwitchThemeBtn />
+    </>
+  );
+};
 
-export default Header
+export default Header;

@@ -3,17 +3,19 @@ import Login from "@/components/Login/Login";
 import { Box, Paper, useTheme } from "@mui/material";
 import Head from "next/head";
 import { RiLoginBoxLine } from "react-icons/ri";
+
 export default function Home() {
   const theme = useTheme();
+
   return (
     <>
       <Head>authentication</Head>
       <Layout>
         <Box
           sx={{
-            height: "100vh",
+            // border: "1px solid red",
+            minHeight: "100vh",
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -21,28 +23,26 @@ export default function Home() {
           <Paper
             className="card-container"
             sx={{
+              // border: "1px solid blue",
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
-              justifyContent: "space-between",
-              borderRadius: { xs: "0 0 20px 60px ", md: "0 20px 20px 0 " },
+              justifyContent: "center",
+              borderRadius: { xs: "0 0 20px 60px", md: "0 20px 20px 0" },
             }}
           >
-            <Box sx={{ p: 5 }}>
+            <Box sx={{ p: { xs: 3, sm: 5 } }}>
               <Login />
             </Box>
 
             <Box
               sx={{
-                p: 8,
+                p: { xs: 4, sm: 6, md: 8 },
                 backgroundColor: theme.palette.primary.main,
                 borderRadius: "0 20px 20px 60px",
                 textAlign: "center",
               }}
             >
-              <RiLoginBoxLine
-                size={230}
-                // style={{ color: theme.palette.primary.main }}
-              />
+              <RiLoginBoxLine size={230} />
             </Box>
           </Paper>
         </Box>

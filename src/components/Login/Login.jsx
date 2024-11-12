@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <Box
       sx={{
-        width: "400px",
+        width: { xs: "100%", sm: "400px" }, 
         padding: "20px",
       }}
     >

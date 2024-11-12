@@ -2,6 +2,7 @@ import Layout from "@/components/Layout/Layout";
 import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -56,7 +57,7 @@ const index = () => {
       data.birthdate = selectedDate ? selectedDate.format("YYYY-MM-DD") : null;
       const postResponse = await customizedAxios.post("/register", data);
       console.log(postResponse.data);
-      router.push("/SuccessRegister")
+      router.push("/SuccessRegister");
     } catch (error) {
       console.error("Submit error ", error);
     }
@@ -65,123 +66,132 @@ const index = () => {
   return (
     <>
       <Layout>
-        <Paper
+        <Box
           sx={{
-            width: "400px",
-            m: "auto",
-            my: 20,
-            p: 3,
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Typography
+          <Paper
             sx={{
-              fontWeight: 900,
+              width: "400px",
+              p: 3,
             }}
           >
-            Register Form
-          </Typography>
-          {/* handleSubmit is a buit-in func in react-hook-form and if validations of fields was successfull then
+            <Typography
+              sx={{
+                fontWeight: 900,
+              }}
+            >
+              Register Form
+            </Typography>
+            {/* handleSubmit is a buit-in func in react-hook-form and if validations of fields was successfull then
         send data to 'onSubmit' func. we can just write our custom code in 'onSubmit' function*/}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              marginTop: "20px",
-            }}
-          >
-            <TextField
-              label="username"
-              variant="outlined"
-              {...register("username")}
-              helperText={errors.username?.message}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  color: errors.username
-                    ? theme.palette.primary.main
-                    : "inherit",
-                },
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+                marginTop: "20px",
               }}
-            />
-            <TextField
-              label="email"
-              variant="outlined"
-              {...register("email")}
-              helperText={errors.email?.message}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  color: errors.email ? theme.palette.primary.main : "inherit",
-                },
-              }}
-            />
-            <TextField
-              label="password"
-              variant="outlined"
-              {...register("password")}
-              helperText={errors.password?.message}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  color: errors.password
-                    ? theme.palette.primary.main
-                    : "inherit",
-                },
-              }}
-            />
-            <TextField
-              label="confirmPassword"
-              variant="outlined"
-              {...register("confirmPassword")}
-              helperText={errors.confirmPassword?.message}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  color: errors.confirmPassword
-                    ? theme.palette.primary.main
-                    : "inherit",
-                },
-              }}
-            />
-            {/* show more info */}
-            <FormControlLabel
-              label="extra info"
-              control={<Switch />}
-              onChange={() => setCheckExtraInfo(!checkExtraInfo)}
-            />
-            {checkExtraInfo && (
-              <>
-                {/* gender */}
-                <FormControl error={!!errors.gender}>
-                  <FormLabel>Gender</FormLabel>
-                  <RadioGroup row {...register("gender")}>
-                    <FormControlLabel
-                      value="female"
-                      label="Female"
-                      control={<Radio />}
+            >
+              <TextField
+                label="username"
+                variant="outlined"
+                {...register("username")}
+                helperText={errors.username?.message}
+                sx={{
+                  "& .MuiFormHelperText-root": {
+                    color: errors.username
+                      ? theme.palette.primary.main
+                      : "inherit",
+                  },
+                }}
+              />
+              <TextField
+                label="email"
+                variant="outlined"
+                {...register("email")}
+                helperText={errors.email?.message}
+                sx={{
+                  "& .MuiFormHelperText-root": {
+                    color: errors.email
+                      ? theme.palette.primary.main
+                      : "inherit",
+                  },
+                }}
+              />
+              <TextField
+                label="password"
+                variant="outlined"
+                {...register("password")}
+                helperText={errors.password?.message}
+                sx={{
+                  "& .MuiFormHelperText-root": {
+                    color: errors.password
+                      ? theme.palette.primary.main
+                      : "inherit",
+                  },
+                }}
+              />
+              <TextField
+                label="confirmPassword"
+                variant="outlined"
+                {...register("confirmPassword")}
+                helperText={errors.confirmPassword?.message}
+                sx={{
+                  "& .MuiFormHelperText-root": {
+                    color: errors.confirmPassword
+                      ? theme.palette.primary.main
+                      : "inherit",
+                  },
+                }}
+              />
+              {/* show more info */}
+              <FormControlLabel
+                label="extra info"
+                control={<Switch />}
+                onChange={() => setCheckExtraInfo(!checkExtraInfo)}
+              />
+              {checkExtraInfo && (
+                <>
+                  {/* gender */}
+                  <FormControl error={!!errors.gender}>
+                    <FormLabel>Gender</FormLabel>
+                    <RadioGroup row {...register("gender")}>
+                      <FormControlLabel
+                        value="female"
+                        label="Female"
+                        control={<Radio />}
+                      />
+                      <FormControlLabel
+                        value="male"
+                        label="Male"
+                        control={<Radio />}
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                  {/* data picker */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      label="select date"
+                      value={selectedDate}
+                      onChange={(newDate) => setSelectedDate(newDate)}
                     />
-                    <FormControlLabel
-                      value="male"
-                      label="Male"
-                      control={<Radio />}
-                    />
-                  </RadioGroup>
-                </FormControl>
-                {/* data picker */}
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="select date"
-                    value={selectedDate}
-                    onChange={(newDate) => setSelectedDate(newDate)}
-                  />
-                </LocalizationProvider>
-              </>
-            )}
-            {/* checkbox */}
-            <FormControlLabel label="Remember me" control={<Checkbox />} />
-            <Button type="submit" variant="contained" color="primary">
-              Register
-            </Button>
-          </form>
-        </Paper>
+                  </LocalizationProvider>
+                </>
+              )}
+              {/* checkbox */}
+              <FormControlLabel label="Remember me" control={<Checkbox />} />
+              <Button type="submit" variant="contained" color="primary">
+                Register
+              </Button>
+            </form>
+          </Paper>
+        </Box>
       </Layout>
     </>
   );

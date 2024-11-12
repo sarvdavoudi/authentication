@@ -1,18 +1,22 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout = ({ children }) => {
   return (
-    <Container
+    <Box
       sx={{
-        minHeight: "100vh",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Header />
-      <main className="main-wrapper">{children}</main>
+      <main className="main-wrapper" style={{ height: "100%" }}>
+        {children}
+      </main>
       <Footer />
-    </Container>
+    </Box>
   );
 };
 
