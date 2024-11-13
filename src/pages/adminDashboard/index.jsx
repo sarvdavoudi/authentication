@@ -1,3 +1,4 @@
+import WithAuth from "@/components/Hoc/WithAuth";
 import Layout from "@/components/Layout/Layout";
 import { Typography } from "@mui/material";
 import React from "react";
@@ -12,4 +13,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default WithAuth(index, "admin");
