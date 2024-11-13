@@ -19,7 +19,7 @@ const loginSchema = yup.object().shape({
 
 const Login = () => {
   const theme = useTheme();
-  // react hook form properties
+  // reactHookForm properties
   const {
     register,
     handleSubmit,
@@ -28,27 +28,11 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Send login data (email & password) to the backend for verification
       const response = await customizedAxios.post("/auth", data);
-
-      // If login is successful, the backend will send an access token
+      console.log(response.data);
       if (response.data.accessToken) {
-        console.log(response.data.accessToken);
-        console.log("Login successful!");
-
-        // Store the access token in localStorage (optional based on your needs)
+        //store token in localStorage
         localStorage.setItem("accessToken", response.data.accessToken);
-
-        // Optionally, if your backend uses httpOnly cookies for refresh tokens, you don’t need to manually store them
-        const refreshToken = document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("jwt="))
-          ?.split("=")[1];
-
-        if (refreshToken) {
-          // If using cookies to store refresh token, this is optional
-          console.log("Stored refresh token");
-        }
       } else {
         console.error("Login failed");
         alert("Login failed, please check your credentials");
@@ -62,7 +46,7 @@ const Login = () => {
   return (
     <Box
       sx={{
-        width: { xs: "100%", sm: "400px" }, 
+        width: { xs: "100%", sm: "400px" },
         padding: "20px",
       }}
     >
