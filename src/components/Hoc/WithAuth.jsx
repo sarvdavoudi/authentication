@@ -19,7 +19,7 @@ const withAuth = (Component, allowedRole = null) => {
       try {
         const decodedToken = jwtDecode(token);
         const userRole = decodedToken.role;
-  
+
         if (allowedRole && userRole !== allowedRole) {
           // Redirect to "accessDenied" page if unauthorized
           router.push("/accessDenied");

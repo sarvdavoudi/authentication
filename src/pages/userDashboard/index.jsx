@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import WithAuth from "@/components/Hoc/WithAuth";
+import Layout from "@/components/Layout/Layout";
 import { Typography } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
-import Layout from "@/components/Layout/Layout";
-import WithAuth from "@/components/Hoc/WithAuth";
+import { useEffect, useState } from "react";
 
 const Index = () => {
   const [showUserName, setShowUserName] = useState("");
@@ -23,5 +23,5 @@ const Index = () => {
     </>
   );
 };
-
-export default WithAuth(Index,'base-role') ;
+// use high order component for authorization
+export default WithAuth(Index, "base-role");

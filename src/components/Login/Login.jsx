@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -74,7 +74,6 @@ const Login = () => {
           label="Email"
           variant="outlined"
           {...register("email")}
-          // error={!!errors.email}
           helperText={errors.email?.message}
           sx={{
             "& .MuiFormHelperText-root": {

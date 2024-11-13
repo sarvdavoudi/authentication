@@ -12,5 +12,5 @@ const index = () => {
     </>
   );
 };
-
+// use high order component for authorization
 export default WithAuth(index, "admin");
