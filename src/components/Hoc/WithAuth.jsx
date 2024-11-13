@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 const withAuth = (Component, allowedRole = null) => {
   const AuthHOC = (props) => {
     const router = useRouter();
-    const [isAuthorized, setIsAuthorized] = useState(null); // Start with null (undecided)
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
-    useEffect(() => {
+    const checkAuthorization = () => {
       const token = localStorage.getItem("accessToken");
 
       if (!token) {
@@ -15,13 +15,11 @@ const withAuth = (Component, allowedRole = null) => {
         router.push("/login");
         return;
       }
-
       try {
         const decodedToken = jwtDecode(token);
         const userRole = decodedToken.role;
 
         if (allowedRole && userRole !== allowedRole) {
-          // Redirect to "accessDenied" page if unauthorized
           router.push("/accessDenied");
         } else {
           setIsAuthorized(true); // User is authorized, allow rendering the component
@@ -29,12 +27,14 @@ const withAuth = (Component, allowedRole = null) => {
       } catch (error) {
         router.push("/login"); // Redirect to login if the token is invalid
       }
+    };
+    useEffect(() => {
+      checkAuthorization();
     }, [router, allowedRole]);
 
     // If user is authorized, render the component, otherwise do nothing
     return isAuthorized ? <Component {...props} /> : null;
   };
-
   return AuthHOC;
 };
 
