@@ -3,43 +3,39 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const withAuth = (Component, allowedRole = null) => {
-  return (props) => {
+  const AuthHOC = (props) => {
     const router = useRouter();
-    const [errorMessage, setErrorMessage] = useState("");
-    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isAuthorized, setIsAuthorized] = useState(null); // Start with null (undecided)
 
     useEffect(() => {
       const token = localStorage.getItem("accessToken");
 
-      if (token) {
+      if (!token) {
+        // No token, redirect to login
+        router.push("/login");
+        return;
+      }
+
+      try {
         const decodedToken = jwtDecode(token);
         const userRole = decodedToken.role;
-
-        // If the role is not authorized, show an alert
+  
         if (allowedRole && userRole !== allowedRole) {
-          setErrorMessage("You do not have access to this page.");
-          setIsAuthorized(false); // Deny access
+          // Redirect to "accessDenied" page if unauthorized
+          router.push("/accessDenied");
         } else {
-          setIsAuthorized(true); // User is authorized
+          setIsAuthorized(true); // User is authorized, allow rendering the component
         }
-      } else {
-        alert("You need to log in first.");
-        router.push("/login"); // Redirect to login if no token
+      } catch (error) {
+        router.push("/login"); // Redirect to login if the token is invalid
       }
     }, [router, allowedRole]);
 
-    // If user is not authorized, show error message
-    if (!isAuthorized && errorMessage) {
-      return (
-        <div style={{ color: "red", textAlign: "center", marginTop: "20px" }}>
-          {errorMessage}
-        </div>
-      );
-    }
-
-    // Render the component only if authorized
+    // If user is authorized, render the component, otherwise do nothing
     return isAuthorized ? <Component {...props} /> : null;
   };
+
+  return AuthHOC;
 };
 
 export default withAuth;

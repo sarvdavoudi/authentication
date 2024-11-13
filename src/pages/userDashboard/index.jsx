@@ -24,4 +24,4 @@ const Index = () => {
   );
 };
 
-export default WithAuth(Index) ;
+export default WithAuth(Index,'base-role') ;
