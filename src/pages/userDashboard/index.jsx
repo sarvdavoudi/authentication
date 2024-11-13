@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
+import Layout from "@/components/Layout/Layout";
 
 const Index = () => {
   const [showUserName, setShowUserName] = useState("");
@@ -15,7 +16,9 @@ const Index = () => {
   }, []);
   return (
     <>
-      <Typography>welcome {showUserName}</Typography>
+      <Layout>
+        <Typography>welcome {showUserName}</Typography>
+      </Layout>
     </>
   );
 };
