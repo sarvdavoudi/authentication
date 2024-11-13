@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
+import { jwtDecode } from "jwt-decode";
 
-const index = () => {
+const Index = () => {
+  const [showUserName, setShowUserName] = useState("");
+
+  const setUserNameFunc = () => {
+    const token = localStorage.getItem("accessToken");
+    const decodedToken = jwtDecode(token);
+    setShowUserName(decodedToken.username);
+  };
+  useEffect(() => {
+    setUserNameFunc();
+  }, []);
   return (
     <>
-      <Typography variant="h4">Welcome to your Dashboard</Typography>
+      <Typography>welcome {showUserName}</Typography>
     </>
   );
 };
 
-export default index;
+export default Index;

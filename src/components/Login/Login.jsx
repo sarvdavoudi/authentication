@@ -2,7 +2,9 @@
 import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -19,6 +21,7 @@ const loginSchema = yup.object().shape({
 
 const Login = () => {
   const theme = useTheme();
+  const router = useRouter();
   // reactHookForm properties
   const {
     register,
@@ -29,13 +32,15 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await customizedAxios.post("/auth", data);
-      console.log(response.data);
       if (response.data.accessToken) {
-        //store token in localStorage
         localStorage.setItem("accessToken", response.data.accessToken);
-      } else {
-        console.error("Login failed");
-        alert("Login failed, please check your credentials");
+        // Decode the JWT token to give role
+        const decodedToken = jwtDecode(response.data.accessToken);
+        if (decodedToken.role === "admin") {
+          router.push("/adminDashboard");
+        } else {
+          router.push("/userDashboard");
+        }
       }
     } catch (error) {
       console.error("Login error", error);
