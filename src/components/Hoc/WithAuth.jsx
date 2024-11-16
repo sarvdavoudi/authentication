@@ -12,7 +12,7 @@ const withAuth = (Component, allowedRole = null) => {
 
       if (!token) {
         // No token, redirect to login
-        router.push("/login");
+        router.push("/");
         return;
       }
       try {
@@ -25,7 +25,7 @@ const withAuth = (Component, allowedRole = null) => {
           setIsAuthorized(true); // User is authorized, allow rendering the component
         }
       } catch (error) {
-        router.push("/login"); // Redirect to login if the token is invalid
+        router.push("/"); // Redirect to login if the token is invalid
       }
     };
     useEffect(() => {
