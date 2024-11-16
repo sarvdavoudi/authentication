@@ -1,4 +1,3 @@
-"use client";
 import { customizedAxios } from "@/services/axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
