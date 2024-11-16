@@ -12,7 +12,7 @@ const withAuth = (Component, allowedRole = null) => {
 
       if (!token) {
         // No token, redirect to login
-        router.push("/");
+        router.push("/login");
         return;
       }
       try {
@@ -25,16 +25,22 @@ const withAuth = (Component, allowedRole = null) => {
           setIsAuthorized(true); // User is authorized, allow rendering the component
         }
       } catch (error) {
-        router.push("/"); // Redirect to login if the token is invalid
+        router.push("/login"); // Redirect to login if the token is invalid
       }
     };
+
     useEffect(() => {
       checkAuthorization();
     }, [router]);
 
-    // If user is authorized, render the component, otherwise do nothing
+    // If user is authorized, render the component, otherwise do nothing (or show a loading spinner)
+    if (isAuthorized === null) {
+      return null; // This can be a loading spinner while checking authorization
+    }
+
     return isAuthorized ? <Component {...props} /> : null;
   };
+
   return AuthHOC;
 };
 

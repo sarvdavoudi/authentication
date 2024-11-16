@@ -1,50 +1,20 @@
-import Login from "@/components/Login/Login";
-import { Box, Paper, useTheme } from "@mui/material";
-import Head from "next/head";
-import { RiLoginBoxLine } from "react-icons/ri";
+// pages/index.js (Home page)
+import withAuth from "@/components/HOC/withAuth"; // Path to your withAuth HOC
+import { Box, Button, Typography } from "@mui/material";
 
-export default function Home() {
-  const theme = useTheme();
-
+const Home = () => {
   return (
-    <>
-      <Head>authentication</Head>
-
-      <Box
-        sx={{
-          // border: "1px solid red",
-          minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Paper
-          className="card-container"
-          sx={{
-            // border: "1px solid blue",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "center",
-            borderRadius: { xs: "0 0 20px 60px", md: "0 20px 20px 0" },
-          }}
-        >
-          <Box sx={{ p: { xs: 3, sm: 5 } }}>
-            <Login />
-          </Box>
-
-          <Box
-            sx={{
-              p: { xs: 4, sm: 6, md: 8 },
-              backgroundColor: theme.palette.primary.main,
-              borderRadius: "0 20px 20px 60px",
-              textAlign: "center",
-            }}
-          >
-            <RiLoginBoxLine size={230} />
-          </Box>
-        </Paper>
-      </Box>
-    </>
+    <Box>
+      <Typography variant="h4">Welcome to the Home Page</Typography>
+      <Typography>
+        This page is protected and requires authentication.
+      </Typography>
+      <Button href="/login" type="submit" variant="contained" color="primary">
+        Go to login page
+      </Button>
+    </Box>
   );
-}
+};
+
+// Wrap your component with the HOC
+export default withAuth(Home);
