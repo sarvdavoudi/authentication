@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
-const Index = () => {
+const UserDashboard = () => {
   const [showUserName, setShowUserName] = useState("");
 
   const setUserNameFunc = () => {
@@ -24,4 +24,4 @@ const Index = () => {
   );
 };
 // use high order component for authorization
-export default WithAuth(Index, "base-role");
+export default WithAuth(UserDashboard, "base-role");

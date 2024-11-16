@@ -40,7 +40,7 @@ const registerSchema = yup.object({
   birthdate: yup.date().nullable(),
   gender: yup.string().nullable(),
 });
-const index = () => {
+const Register = () => {
   const theme = useTheme();
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -197,4 +197,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Register;

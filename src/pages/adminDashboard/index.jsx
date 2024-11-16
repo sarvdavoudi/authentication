@@ -3,7 +3,7 @@ import Layout from "@/components/Layout/Layout";
 import { Typography } from "@mui/material";
 import React from "react";
 
-const index = () => {
+const AdminDashboard = () => {
   return (
     <>
       <Layout>
@@ -13,4 +13,4 @@ const index = () => {
   );
 };
 // use high order component for authorization
-export default WithAuth(index, "admin");
+export default WithAuth(AdminDashboard, "admin");

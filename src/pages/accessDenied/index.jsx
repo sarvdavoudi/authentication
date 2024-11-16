@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Container } from "@mui/material";
 
-const index = () => {
+const AccessDenied = () => {
   return (
     <Container maxWidth="sm" style={{ marginTop: "20px", textAlign: "center" }}>
       <Typography variant="h4" color="error">
@@ -14,4 +14,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AccessDenied;

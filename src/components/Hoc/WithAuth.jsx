@@ -30,7 +30,7 @@ const withAuth = (Component, allowedRole = null) => {
     };
     useEffect(() => {
       checkAuthorization();
-    }, [router, allowedRole]);
+    }, [router]);
 
     // If user is authorized, render the component, otherwise do nothing
     return isAuthorized ? <Component {...props} /> : null;
