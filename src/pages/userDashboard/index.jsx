@@ -1,5 +1,4 @@
 import WithAuth from "@/components/Hoc/WithAuth";
-import Layout from "@/components/Layout/Layout";
 import { Typography } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -17,9 +16,7 @@ const UserDashboard = () => {
   }, []);
   return (
     <>
-      <Layout>
-        <Typography>welcome {showUserName}</Typography>
-      </Layout>
+      <Typography>welcome {showUserName}</Typography>
     </>
   );
 };

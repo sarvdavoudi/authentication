@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout/Layout";
 import Login from "@/components/Login/Login";
 import { Box, Paper, useTheme } from "@mui/material";
 import Head from "next/head";
@@ -10,43 +9,42 @@ export default function Home() {
   return (
     <>
       <Head>authentication</Head>
-      <Layout>
-        <Box
+
+      <Box
+        sx={{
+          // border: "1px solid red",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Paper
+          className="card-container"
           sx={{
-            // border: "1px solid red",
-            minHeight: "100vh",
+            // border: "1px solid blue",
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
-            alignItems: "center",
+            borderRadius: { xs: "0 0 20px 60px", md: "0 20px 20px 0" },
           }}
         >
-          <Paper
-            className="card-container"
+          <Box sx={{ p: { xs: 3, sm: 5 } }}>
+            <Login />
+          </Box>
+
+          <Box
             sx={{
-              // border: "1px solid blue",
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              justifyContent: "center",
-              borderRadius: { xs: "0 0 20px 60px", md: "0 20px 20px 0" },
+              p: { xs: 4, sm: 6, md: 8 },
+              backgroundColor: theme.palette.primary.main,
+              borderRadius: "0 20px 20px 60px",
+              textAlign: "center",
             }}
           >
-            <Box sx={{ p: { xs: 3, sm: 5 } }}>
-              <Login />
-            </Box>
-
-            <Box
-              sx={{
-                p: { xs: 4, sm: 6, md: 8 },
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: "0 20px 20px 60px",
-                textAlign: "center",
-              }}
-            >
-              <RiLoginBoxLine size={230} />
-            </Box>
-          </Paper>
-        </Box>
-      </Layout>
+            <RiLoginBoxLine size={230} />
+          </Box>
+        </Paper>
+      </Box>
     </>
   );
 }

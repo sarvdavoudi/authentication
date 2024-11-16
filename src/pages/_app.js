@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout/Layout";
 import store from "@/redux/store";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/styles/theme";
@@ -8,7 +9,9 @@ export default function App({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <ThemeProvider>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </Provider>
     </>
