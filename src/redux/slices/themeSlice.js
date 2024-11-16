@@ -8,9 +8,15 @@ export const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem("themeMode", state.mode); // ذخیره تم جدید
+      }
+    },
+    setTheme: (state, action) => {
+      state.mode = action.payload;
     },
   },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const { toggleTheme, setTheme } = themeSlice.actions;
 export default themeSlice.reducer;
