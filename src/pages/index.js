@@ -1,5 +1,4 @@
-// pages/index.js (Home page)
-import withAuth from "@/components/HOC/withAuth"; // Path to your withAuth HOC
+import WithAuth from "@/components/Hoc/WithAuth";
 import { Box, Button, Typography } from "@mui/material";
 
 const Home = () => {
@@ -17,4 +16,4 @@ const Home = () => {
 };
 
 // Wrap your component with the HOC
-export default withAuth(Home);
+export default WithAuth(Home);

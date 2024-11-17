@@ -14,7 +14,6 @@ export const ThemeProvider = ({ children }) => {
   const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.themeSlice.mode);
 
-  
   // همگام‌سازی Redux با localStorage هنگام بارگذاری صفحه
   useEffect(() => {
     const savedTheme = localStorage.getItem("themeMode");

@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const withAuth = (Component, allowedRole = null) => {
+const WithAuth = (Component, allowedRole = null) => {
   const AuthHOC = (props) => {
     const router = useRouter();
     const [isAuthorized, setIsAuthorized] = useState(null);
@@ -44,4 +44,4 @@ const withAuth = (Component, allowedRole = null) => {
   return AuthHOC;
 };
 
-export default withAuth;
+export default WithAuth;
