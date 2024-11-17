@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FcOk } from "react-icons/fc";
 
-const SuccessRegisterPage = () => {
+const SuccessfulRegisterPage = () => {
   return (
     <Box
       sx={{
@@ -25,4 +25,4 @@ const SuccessRegisterPage = () => {
   );
 };
 
-export default SuccessRegisterPage;
+export default SuccessfulRegisterPage;

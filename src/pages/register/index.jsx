@@ -56,7 +56,7 @@ const Register = () => {
       data.birthdate = selectedDate ? selectedDate.format("YYYY-MM-DD") : null;
       const postResponse = await customizedAxios.post("/register", data);
       console.log(postResponse.data);
-      router.push('/successRegister');
+      router.push('/successfulRegister');
     } catch (error) {
       console.error("Submit error ", error);
     }
