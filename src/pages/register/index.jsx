@@ -181,7 +181,7 @@ const Register = () => {
               </>
             )}
             {/* checkbox */}
-            <FormControlLabel label="Remember me" control={<Checkbox />} />
+            <FormControlLabel label="Remember me" control={<Checkbox inputProps={{ "aria-label": "extra info toggle" }}/>} />
             <Button type="submit" variant="contained" color="primary">
               Register
             </Button>

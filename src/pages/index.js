@@ -1,8 +1,15 @@
 import WithAuth from "@/components/Hoc/WithAuth";
 import { Box, Button, Typography } from "@mui/material";
+import Head from "next/head";
 
 const Home = () => {
   return (
+    <>
+    <Head>
+      <title>
+        authentication and authorization system
+      </title>
+    </Head>
     <Box>
       <Typography variant="h4">Welcome to the Home Page</Typography>
       <Typography>
@@ -12,6 +19,7 @@ const Home = () => {
         Go to login page
       </Button>
     </Box>
+    </>
   );
 };
 

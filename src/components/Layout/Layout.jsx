@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       }}
     >
       <Header />
-      <main className="main-wrapper" style={{ height: "100%" }}>
+      <main role="main" className="main-wrapper" style={{ height: "100%" }}>
         {children}
       </main>
       <Footer />
