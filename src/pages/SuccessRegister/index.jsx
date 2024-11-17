@@ -16,9 +16,9 @@ const SuccessRegister = () => {
       <FcOk size={200} />
       <Typography variant="h4">Thanks for your Registration!</Typography>
       <Typography variant="body1">
-        your authentication was successful{" "}
+        your authentication was successful
       </Typography>
-      <Button variant="contained" color="primary" href="/">
+      <Button variant="contained" color="primary" href="/login">
         go to login page
       </Button>
     </Box>
