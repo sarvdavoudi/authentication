@@ -50,8 +50,8 @@ const lightModePalette = {
 const darkModePalette = {
   mode: "dark",
   background: {
-    default: "#1a242e", 
-    paper: "#313A43", 
+    default: "#1a242e",
+    paper: "#313A43",
   },
   primary: {
     main: "#2e7d32",
@@ -61,12 +61,24 @@ const darkModePalette = {
   secondary: {
     main: "#313A43",
     light: "#FFFFFF",
-    dark: "#FFFFFF",
   },
   info: {
     main: "hsl(220, 15%, 20%)",
     dark: "hsl(220, 20%, 15%)",
     text: "#FFFFFF",
+  },
+  error: {
+    main: "#EB5757",
+    light: "rgba(235, 87, 87, 0.30)",
+  },
+  success: {
+    main: "#2e7d32",
+    light: "#4caf50",
+    dark: "#1b5e20",
+  },
+  warning: {
+    main: "#F8A71E ",
+    light: "rgba(248, 167, 30, 0.20)",
   },
   gray: {
     1000: "#313A43",
