@@ -11,11 +11,10 @@ const lightModePalette = {
     main: "#2e7d32",
     light: "#4caf50",
     dark: "#1b5e20",
-    contrastText: "#fff",
   },
   secondary: {
-    light: "#FFFFFF",
     main: "#313A43",
+    light: "#FFFFFF",
   },
   info: {
     main: "hsl(20, 50%, 98%)",
@@ -23,7 +22,6 @@ const lightModePalette = {
     text: "#FFFFFF",
   },
   error: {
-    lighter: "rgba(235, 87, 87, 0.20)",
     main: "#EB5757",
     light: "rgba(235, 87, 87, 0.30)",
   },
@@ -33,8 +31,8 @@ const lightModePalette = {
     dark: "#1b5e20",
   },
   warning: {
-    light: "rgba(248, 167, 30, 0.20)",
     main: "#F8A71E ",
+    light: "rgba(248, 167, 30, 0.20)",
   },
   gray: {
     0: "#FFFFFF",
@@ -51,24 +49,24 @@ const lightModePalette = {
 
 const darkModePalette = {
   mode: "dark",
+  background: {
+    default: "#1a242e", 
+    paper: "#313A43", 
+  },
   primary: {
     main: "#2e7d32",
     light: "#4caf50",
     dark: "#1b5e20",
   },
   secondary: {
-    light: "#FFFFFF",
     main: "#313A43",
+    light: "#FFFFFF",
     dark: "#FFFFFF",
   },
   info: {
     main: "hsl(220, 15%, 20%)",
     dark: "hsl(220, 20%, 15%)",
     text: "#FFFFFF",
-  },
-  background: {
-    default: "#1a242e", // A lighter black (adjust this shade as desired)
-    paper: "#313A43", // A lighter background for paper elements
   },
   gray: {
     1000: "#313A43",
