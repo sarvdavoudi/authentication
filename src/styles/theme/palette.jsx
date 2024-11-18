@@ -4,8 +4,8 @@ import { alpha } from "@mui/material";
 const lightModePalette = {
   mode: "light",
   background: {
-    default: "#FFFFFF",
-    paper: "#313A43",
+    default: "#f2fbfa",
+    paper: "#fFFF",
   },
   primary: {
     main: "#2e7d32",
@@ -16,7 +16,6 @@ const lightModePalette = {
   secondary: {
     light: "#FFFFFF",
     main: "#313A43",
-    dark: "#FFFFFF",
   },
   info: {
     main: "hsl(20, 50%, 98%)",
